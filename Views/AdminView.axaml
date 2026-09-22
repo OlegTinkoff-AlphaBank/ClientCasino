@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CasinoClient.ViewModels"
+             x:Class="CasinoClient.Views.AdminView"
+             x:DataType="vm:AdminViewModel">
+    <ScrollViewer>
+        <StackPanel Spacing="20" MaxWidth="480">
+
+            <TextBlock Text="Админ-панель" FontSize="20" FontWeight="SemiBold" />
+
+            <Border Classes="card">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Начислить баланс" FontWeight="Medium" />
+                    <TextBox Text="{Binding TargetUsername}" Watermark="Имя пользователя" />
+                    <NumericUpDown Value="{Binding AddAmount}" Increment="50" FormatString="0.##" />
+                    <Button Classes="primary" Content="Начислить" Command="{Binding AddBalanceCommand}" />
+                    <TextBlock Text="{Binding BalanceStatus}" Foreground="#8A8F9C" TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Создать игру" FontWeight="Medium" />
+                    <TextBox Text="{Binding NewGameName}" Watermark="Название" />
+                    <TextBox Text="{Binding NewGameType}" Watermark="Тип (Dice/Slots/...)" />
+                    <NumericUpDown Value="{Binding NewGameMinBet}" FormatString="0.##" />
+                    <NumericUpDown Value="{Binding NewGameMaxBet}" FormatString="0.##" />
+                    <Button Classes="primary" Content="Создать" Command="{Binding CreateGameCommand}" />
+                    <TextBlock Text="{Binding GameStatus}" Foreground="#8A8F9C" TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Добавить исход игре" FontWeight="Medium" />
+                    <NumericUpDown Value="{Binding OutcomeGameId}" FormatString="0" />
+                    <NumericUpDown Value="{Binding OutcomeM}" Increment="0.1" FormatString="0.##" />
+                    <NumericUpDown Value="{Binding OutcomeW}" Increment="0.1" FormatString="0.##" />
+                    <Button Classes="primary" Content="Добавить" Command="{Binding CreateOutcomeCommand}" />
+                    <TextBlock Text="{Binding OutcomeStatus}" Foreground="#8A8F9C" TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

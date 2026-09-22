@@ -1,0 +1,12 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CasinoClient.ViewModels"
+        x:Class="CasinoClient.Views.MainWindow"
+        x:DataType="vm:AppViewModel"
+        Title="Casino"
+        Width="1200" Height="780"
+        MinWidth="960" MinHeight="640"
+        Background="#0D0F14"
+        WindowStartupLocation="CenterScreen">
+    <ContentControl Content="{Binding CurrentViewModel}" />
+</Window>

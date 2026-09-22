@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CasinoClient.ViewModels"
+             xmlns:conv="using:Avalonia.Data.Converters"
+             x:Class="CasinoClient.Views.LoginView"
+             x:DataType="vm:LoginViewModel"
+             Background="#0D0F14">
+    <Grid>
+        <Border Classes="card" Width="360" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Spacing="16">
+                <TextBlock Text="Вход" FontSize="22" FontWeight="SemiBold" />
+                <TextBlock Text="Войдите, чтобы продолжить" Foreground="#8A8F9C" FontSize="13" Margin="0,-8,0,4" />
+
+                <TextBox Text="{Binding Username}" Watermark="Имя пользователя" />
+                <TextBox Text="{Binding Password}" PasswordChar="•" Watermark="Пароль" />
+
+                <TextBlock Text="{Binding ErrorMessage}"
+                           Foreground="#F0576B" FontSize="13" TextWrapping="Wrap"
+                           IsVisible="{Binding ErrorMessage, Converter={x:Static conv:StringConverters.IsNotNullOrEmpty}}" />
+
+                <Button Content="Войти" Classes="primary" HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center" IsEnabled="{Binding !IsBusy}"
+                        Command="{Binding LoginCommand}" Margin="0,4,0,0" />
+
+                <Button Content="Создать аккаунт" Classes="secondary" HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center" IsEnabled="{Binding !IsBusy}"
+                        Command="{Binding GoToRegisterCommand}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

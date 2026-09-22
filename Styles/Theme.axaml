@@ -1,0 +1,118 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Styles.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BgColor">#0D0F14</Color>
+            <Color x:Key="SurfaceColor">#15181F</Color>
+            <Color x:Key="SurfaceLightColor">#1D2129</Color>
+            <Color x:Key="BorderColor">#262B35</Color>
+            <Color x:Key="AccentColor">#6C6CF5</Color>
+            <Color x:Key="AccentLightColor">#8A8AF9</Color>
+            <Color x:Key="TextPrimaryColor">#EDEEF2</Color>
+            <Color x:Key="TextSecondaryColor">#8A8F9C</Color>
+            <Color x:Key="SuccessColor">#3ECF8E</Color>
+            <Color x:Key="DangerColor">#F0576B</Color>
+
+            <SolidColorBrush x:Key="BgBrush" Color="{StaticResource BgColor}" />
+            <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource SurfaceColor}" />
+            <SolidColorBrush x:Key="SurfaceLightBrush" Color="{StaticResource SurfaceLightColor}" />
+            <SolidColorBrush x:Key="BorderBrush2" Color="{StaticResource BorderColor}" />
+            <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+            <SolidColorBrush x:Key="AccentLightBrush" Color="{StaticResource AccentLightColor}" />
+            <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}" />
+            <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}" />
+            <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource SuccessColor}" />
+            <SolidColorBrush x:Key="DangerBrush" Color="{StaticResource DangerColor}" />
+        </ResourceDictionary>
+    </Styles.Resources>
+
+    <Style Selector="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+    </Style>
+
+    <Style Selector="Border.card">
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush2}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="22" />
+    </Style>
+
+    
+
+    <Style Selector="Button.primary">
+        <Setter Property="Background" Value="{StaticResource AccentBrush}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Padding" Value="16,11" />
+        <Setter Property="CornerRadius" Value="9" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="Button.primary:pointerover /template/ ContentPresenter">
+        <Setter Property="Opacity" Value="0.88" />
+    </Style>
+    <Style Selector="Button.primary:pressed /template/ ContentPresenter">
+        <Setter Property="Opacity" Value="0.72" />
+    </Style>
+    <Style Selector="Button.primary:disabled /template/ ContentPresenter">
+        <Setter Property="Opacity" Value="0.4" />
+    </Style>
+
+    <Style Selector="Button.secondary">
+        <Setter Property="Background" Value="{StaticResource SurfaceLightBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+        <Setter Property="Padding" Value="16,11" />
+        <Setter Property="CornerRadius" Value="9" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush2}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="Button.secondary:pointerover /template/ ContentPresenter">
+        <Setter Property="Opacity" Value="0.85" />
+    </Style>
+    <Style Selector="Button.secondary:disabled /template/ ContentPresenter">
+        <Setter Property="Opacity" Value="0.4" />
+    </Style>
+
+    <Style Selector="Button.nav">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
+        <Setter Property="Padding" Value="14,10" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="Button.nav:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource SurfaceLightBrush}" />
+    </Style>
+    <Style Selector="Button.nav.active">
+        <Setter Property="Background" Value="{StaticResource SurfaceLightBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource AccentLightBrush}" />
+    </Style>
+
+    <Style Selector="TextBox">
+        <Setter Property="Background" Value="{StaticResource SurfaceLightBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush2}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="9" />
+        <Setter Property="Padding" Value="13,10" />
+        <Setter Property="CaretBrush" Value="{StaticResource AccentLightBrush}" />
+        <Setter Property="SelectionBrush" Value="{StaticResource AccentBrush}" />
+    </Style>
+
+    <Style Selector="NumericUpDown">
+        <Setter Property="Background" Value="{StaticResource SurfaceLightBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush2}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="9" />
+        <Setter Property="Padding" Value="10,6" />
+    </Style>
+
+</Styles>

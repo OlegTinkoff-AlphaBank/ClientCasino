@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CasinoClient.ViewModels"
+             x:Class="CasinoClient.Views.ProfileView"
+             x:DataType="vm:ProfileViewModel">
+    <StackPanel Spacing="20" MaxWidth="420">
+
+        <TextBlock Text="Профиль" FontSize="20" FontWeight="SemiBold" />
+
+        <Border Classes="card">
+            <StackPanel Spacing="12">
+                <StackPanel Spacing="2">
+                    <TextBlock Text="Имя пользователя" FontSize="12" Foreground="#8A8F9C" />
+                    <TextBlock Text="{Binding Profile.Username}" FontSize="15" />
+                </StackPanel>
+                <StackPanel Spacing="2">
+                    <TextBlock Text="Email" FontSize="12" Foreground="#8A8F9C" />
+                    <TextBlock Text="{Binding Profile.Email}" FontSize="15" />
+                </StackPanel>
+                <StackPanel Spacing="2">
+                    <TextBlock Text="Баланс" FontSize="12" Foreground="#8A8F9C" />
+                    <TextBlock Text="{Binding Profile.Balance, StringFormat='{}{0:0.##} ₽'}"
+                               FontSize="19" FontWeight="SemiBold" Foreground="#8A8AF9" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <TextBlock Text="{Binding ErrorMessage}" Foreground="#F0576B" />
+    </StackPanel>
+</UserControl>

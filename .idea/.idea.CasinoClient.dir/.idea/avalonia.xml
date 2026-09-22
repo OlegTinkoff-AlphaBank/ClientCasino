@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="Styles/Theme.axaml" value="CasinoClient.csproj" />
+        <entry key="Views/AdminView.axaml" value="CasinoClient.csproj" />
+        <entry key="Views/DonationsView.axaml" value="CasinoClient.csproj" />
+        <entry key="Views/GameDetailView.axaml" value="CasinoClient.csproj" />
+        <entry key="Views/LoginView.axaml" value="CasinoClient.csproj" />
+        <entry key="Views/MainWindow.axaml" value="CasinoClient.csproj" />
+        <entry key="Views/RegisterView.axaml" value="CasinoClient.csproj" />
+        <entry key="Views/ShellView.axaml" value="CasinoClient.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

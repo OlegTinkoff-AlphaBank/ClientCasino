@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CasinoClient.ViewModels"
+             x:Class="CasinoClient.Views.ShellView"
+             x:DataType="vm:ShellViewModel"
+             Background="#0D0F14">
+    <Grid ColumnDefinitions="232,*">
+
+        <Border Grid.Column="0" Background="#15181F" BorderBrush="#262B35" BorderThickness="0,0,1,0">
+            <DockPanel Margin="16" LastChildFill="False">
+
+                <TextBlock DockPanel.Dock="Top" Text="Casino" FontSize="17" FontWeight="SemiBold"
+                           Margin="8,4,0,24" />
+
+                <Border DockPanel.Dock="Top" Classes="card" Padding="16" Margin="0,0,0,20">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="{Binding Profile.Username}" FontWeight="Medium" FontSize="13" />
+                        <TextBlock Text="Баланс" FontSize="11" Foreground="#8A8F9C" />
+                        <TextBlock Text="{Binding Profile.Balance, StringFormat='{}{0:0.##} ₽'}"
+                                   FontSize="19" FontWeight="SemiBold" Foreground="#8A8AF9" />
+                    </StackPanel>
+                </Border>
+
+                <StackPanel DockPanel.Dock="Top" Spacing="4">
+                    <Button Classes="nav" Content="Игры" Command="{Binding NavigateGamesCommand}" />
+                    <Button Classes="nav" Content="Донаты" Command="{Binding NavigateDonationsCommand}" />
+                    <Button Classes="nav" Content="Профиль" Command="{Binding NavigateProfileCommand}" />
+                    <Button Classes="nav" Content="Админ" Command="{Binding NavigateAdminCommand}"
+                            IsVisible="{Binding IsAdmin}" />
+                    <TextBlock Text="{Binding Role}"/>
+                </StackPanel>
+
+                <Button DockPanel.Dock="Bottom" Classes="secondary" Content="Выйти"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                        Command="{Binding LogoutCommand}" />
+            </DockPanel>
+        </Border>
+
+        <ContentControl Grid.Column="1" Content="{Binding CurrentPage}" Margin="28" />
+    </Grid>
+</UserControl>

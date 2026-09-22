@@ -1,0 +1,82 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CasinoClient.ViewModels"
+             x:Class="CasinoClient.Views.GameDetailView"
+             x:DataType="vm:GameDetailViewModel">
+    <ScrollViewer>
+        <StackPanel Spacing="20" MaxWidth="560">
+
+            <TextBlock Text="{Binding Game.Name}" FontSize="20" FontWeight="SemiBold" />
+            <TextBlock Text="{Binding Game.Type}" Foreground="#8A8F9C" FontSize="13" Margin="0,-14,0,0" />
+
+            <!-- Слоты: три "барабана", синхронно показывающих текущий кадр анимации -->
+            <Border Classes="card" IsVisible="{Binding IsSlots}">
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                    <Border Width="80" Height="80" CornerRadius="10" Background="#1D2129">
+                        <Image Source="{Binding CurrentSpinOutcome.Image}" Stretch="Uniform" Margin="10" />
+                    </Border>
+                    <Border Width="80" Height="80" CornerRadius="10" Background="#1D2129">
+                        <Image Source="{Binding CurrentSpinOutcome.Image}" Stretch="Uniform" Margin="10" />
+                    </Border>
+                    <Border Width="80" Height="80" CornerRadius="10" Background="#1D2129">
+                        <Image Source="{Binding CurrentSpinOutcome.Image}" Stretch="Uniform" Margin="10" />
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Рулетка: один крупный индикатор текущего исхода во время вращения -->
+            <Border Classes="card" IsVisible="{Binding IsRoulette}">
+                <StackPanel Spacing="10" HorizontalAlignment="Center">
+                    <Border Width="140" Height="140" CornerRadius="70" Background="#1D2129">
+                        <Image Source="{Binding CurrentSpinOutcome.Image}" Stretch="Uniform" Margin="16" />
+                    </Border>
+                    <TextBlock Text="{Binding CurrentSpinOutcome.Name}" HorizontalAlignment="Center"
+                               FontWeight="Medium" IsVisible="{Binding HasResult}" />
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel Spacing="14">
+                    <TextBlock Text="Размер ставки" FontSize="13" Foreground="#8A8F9C" />
+                    <NumericUpDown Value="{Binding BetAmount}"
+                                   Minimum="{Binding Game.MinBet}" Maximum="{Binding Game.MaxBet}"
+                                   Increment="10" FormatString="0.##" />
+
+                    <Button Classes="primary" Content="Сделать ставку" Margin="0,4,0,0"
+                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                            IsEnabled="{Binding !IsBusy}"
+                            Command="{Binding PlaceBetCommand}" />
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="{Binding ResultMessage}" FontSize="15" FontWeight="Medium"
+                       IsVisible="{Binding HasResult}" />
+
+            <!-- Все возможные исходы - для любой игры, где они заданы -->
+            <StackPanel Spacing="10">
+                <TextBlock Text="Возможные исходы" FontSize="14" FontWeight="SemiBold" />
+                <ItemsControl ItemsSource="{Binding Outcomes}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:OutcomeItemViewModel">
+                            <Border Width="90" Margin="0,0,10,10" Padding="8" CornerRadius="10"
+                                    Background="#1D2129" BorderBrush="#262B35" BorderThickness="1">
+                                <StackPanel Spacing="4" HorizontalAlignment="Center">
+                                    <Image Source="{Binding Image}" Width="48" Height="48" Stretch="Uniform" />
+                                    <TextBlock Text="{Binding Name}" FontSize="11" HorizontalAlignment="Center"
+                                               TextWrapping="Wrap" TextAlignment="Center" />
+                                    <TextBlock Text="{Binding Odds, StringFormat='x{0:0.##}'}" FontSize="11"
+                                               Foreground="#8A8AF9" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

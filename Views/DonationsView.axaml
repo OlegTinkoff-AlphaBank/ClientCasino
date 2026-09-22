@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CasinoClient.ViewModels"
+             xmlns:models="using:CasinoClient.Models"
+             xmlns:conv="using:Avalonia.Data.Converters"
+             x:Class="CasinoClient.Views.DonationsView"
+             x:DataType="vm:DonationsViewModel">
+    <StackPanel Spacing="20" MaxWidth="480">
+
+        <TextBlock Text="Пополнение баланса" FontSize="20" FontWeight="SemiBold" />
+
+        <Border Classes="card">
+            <StackPanel Spacing="14">
+                <TextBlock Text="Сумма" FontSize="13" Foreground="#8A8F9C" />
+                <NumericUpDown Value="{Binding Amount}" Minimum="1" Increment="50" FormatString="0.##" />
+
+                <Button Classes="primary" Content="Получить код для доната" Margin="0,4,0,0"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                        IsEnabled="{Binding !IsBusy}"
+                        Command="{Binding StartDonateCommand}" />
+
+                <StackPanel Spacing="8" IsVisible="{Binding DonationCode, Converter={x:Static conv:StringConverters.IsNotNullOrEmpty}}">
+                    <TextBlock Text="{Binding DonationCode, StringFormat='Код: {0}'}" FontWeight="Medium" />
+                    <Button Classes="secondary" Content="Проверить, зачислен ли донат"
+                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                            IsEnabled="{Binding !IsBusy}"
+                            Command="{Binding CheckDonateCommand}" />
+                </StackPanel>
+
+                <TextBlock Text="{Binding StatusMessage}" Foreground="#8A8F9C" TextWrapping="Wrap"
+                           IsVisible="{Binding StatusMessage, Converter={x:Static conv:StringConverters.IsNotNullOrEmpty}}" />
+            </StackPanel>
+        </Border>
+
+        <TextBlock Text="История донатов" FontSize="15" FontWeight="SemiBold" />
+
+        <ItemsControl ItemsSource="{Binding History}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="models:DonationDto">
+                    <Border Background="#1D2129" CornerRadius="9" Padding="12" Margin="0,0,0,8">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Grid.Column="0" Text="{Binding Status}" Foreground="#8A8F9C" FontSize="12" />
+                            <TextBlock Grid.Column="1" Text="{Binding Amount, StringFormat='+{0:0.##} ₽'}"
+                                       Foreground="#3ECF8E" FontWeight="Medium" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CasinoClient.ViewModels"
+             xmlns:models="using:CasinoClient.Models"
+             xmlns:conv="using:Avalonia.Data.Converters"
+             x:Class="CasinoClient.Views.GamesView"
+             x:DataType="vm:GamesViewModel">
+    <StackPanel Spacing="20">
+
+        <TextBlock Text="Игры" FontSize="20" FontWeight="SemiBold" />
+
+        <TextBlock Text="{Binding ErrorMessage}" Foreground="#F0576B"
+                   IsVisible="{Binding ErrorMessage, Converter={x:Static conv:StringConverters.IsNotNullOrEmpty}}" />
+
+        <TextBlock Text="Загрузка..." Foreground="#8A8F9C" IsVisible="{Binding IsLoading}" />
+
+        <ItemsControl ItemsSource="{Binding Games}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="models:GameDto">
+                    <Button Width="220" Height="140" Margin="0,0,16,16" Padding="18"
+                            Classes="game-card" Tag="{Binding}" Click="GameCard_Click"
+                            HorizontalContentAlignment="Left" VerticalContentAlignment="Top">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="15" />
+                            <TextBlock Text="{Binding Type}" Foreground="#8A8F9C" FontSize="12" />
+                            <TextBlock FontSize="12" Foreground="#8A8F9C">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="Ставка: {0:0.##} – {1:0.##}">
+                                        <Binding Path="MinBet" />
+                                        <Binding Path="MaxBet" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>
